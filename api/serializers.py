@@ -33,6 +33,7 @@ class PetModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Pet
         fields = ("id", "name", "owner", "age", "species", "created_at")
+        read_only_fields = ("created_at",)
 
 
 class RecordModelSerializer(serializers.ModelSerializer):
