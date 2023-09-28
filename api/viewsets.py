@@ -1,6 +1,6 @@
 """REST API viewsets"""
 
-from rest_framework import viewsets
+from rest_framework import viewsets, response, decorators
 from . import models, serializers
 
 
@@ -9,6 +9,13 @@ class OwnerViewSet(viewsets.ModelViewSet):
 
     queryset = models.Owner.objects.all()
     serializer_class = serializers.OwnerModelSerializer
+
+    @decorators.action(detail=False, methods=["post"])
+    def auth(self, request):
+        # Logica para autenticar al usuario
+        email = request.data.get("email")
+        password = request.data.get("password")
+        return response.Response({"token": "lkajshdlkfjhaslkdjhflkasjhdfklj"})
 
 
 class SpeciesViewSet(viewsets.ModelViewSet):
